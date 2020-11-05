@@ -1,0 +1,3 @@
+FROM lazyteam/lazydocker
+
+ADD config/config.yml /.config/jesseduffield/lazydocker/config.yml

@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  dev-stack:
+
+services:
+  lazydocker:
+    image: ${APP_BASE}/lazydocker:latest
+    build:
+      dockerfile: dockerfile
+      context: ${PWD}/stack/lazydocker 
+    container_name: lazydocker
+    stdin_open: true
+    tty: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./lazydocker/config:/.config/jesseduffield/lazydocker
+    networks:
+      - dev-stack

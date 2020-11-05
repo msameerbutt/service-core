@@ -1,0 +1,16 @@
+FROM nginx:1.17-alpine
+
+# Add Nginx main config file
+ADD ./nginx.conf /etc/nginx/nginx.conf
+
+# Add Nginx PHP FPM
+ADD ./php-fpm.conf /etc/nginx/php-fpm.conf
+
+# Add Nginx PHP FPM
+ADD ./server.conf /etc/nginx/server.conf
+
+# Copy Nginx SSL Certificates
+COPY ./ssl /etc/nginx/ssl
+
+# Working Directory
+WORKDIR /var/www/html

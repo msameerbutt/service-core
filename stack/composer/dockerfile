@@ -1,0 +1,5 @@
+FROM composer:latest
+
+ARG WORKDIR=/var/www/html
+
+WORKDIR $WORKDIR
