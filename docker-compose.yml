@@ -23,6 +23,7 @@ services:
     depends_on:
       - php
       - mysql
+      - redis
     networks:
       - dev-stack  
       
