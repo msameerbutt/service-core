@@ -223,23 +223,22 @@ is_xdebug_on() {
 # $1 option A or B or C or ABC
 # ----------------------------------
 executeMenuCommands() {
-    local choice=$(echo $1 | tr "[:lower:]" "[:upper:]")
+  local choice=$(echo $1 | tr "[:lower:]" "[:upper:]")
 	case $choice in 
-        "0") docker-compose -f docker-compose-lazydocker.yml up -d lazydocker && docker-compose -f docker-compose-lazydocker.yml exec lazydocker lazydocker ;;
+    "0") docker-compose -f docker-compose-lazydocker.yml up -d lazydocker && docker-compose -f docker-compose-lazydocker.yml exec lazydocker lazydocker ;;
 		"1") system_check && redirectToMainMenu;;     
 		"2") docker-compose -f docker-compose.yml -f docker-compose-lazydocker.yml build ;;
 		"A") docker-compose up -d site ;;          
-        "B") docker-compose up -d ;;
+    "B") docker-compose up -d ;;
 		"C") docker-compose exec php scripts.sh xdebug-on ;;          
-        "D") docker-compose exec php scripts.sh xdebug-off ;;  
-        "G") docker-compose run --rm composer install --ignore-platform-reqs && redirectToMainMenu;; 
-        "H") docker-compose run --rm composer update && redirectToMainMenu;; 
-        "I") docker-compose run --rm artisan vendor:publish --provider="Backpack\CRUD\BackpackServiceProvider" --tag=public && redirectToMainMenu;; 
-        "J") docker-compose run --rm npm install && docker-compose run --rm npm run dev && redirectToMainMenu;; 
-        "K") refreshDatabase && redirectToMainMenu;; 
-        "L") runDBMigrations && redirectToMainMenu;;
-        "M") runAutomationTests && redirectToMainMenu;;
-        "N") runCodeSniffer && redirectToMainMenu;;        
+    "D") docker-compose exec php scripts.sh xdebug-off ;;
+    "G") docker-compose run --rm composer install --ignore-platform-reqs && redirectToMainMenu;;
+    "H") docker-compose run --rm composer update && redirectToMainMenu;;
+    "J") docker-compose run --rm npm install && docker-compose run --rm npm run dev && redirectToMainMenu;;
+    "K") refreshDatabase && redirectToMainMenu;;
+    "L") runDBMigrations && redirectToMainMenu;;
+    "M") runAutomationTests && redirectToMainMenu;;
+    "N") runCodeSniffer && redirectToMainMenu;;
 		"X") docker-compose -f docker-compose.yml -f docker-compose-lazydocker.yml down && exit 0 ;;   
 		"") exit 0 ;;   
 	esac
@@ -295,9 +294,13 @@ showMenu() {
 listenMenuChoice() {
 	local choice
 	read -p "SELECT YOUR CHOICE: " choice
-    for (( i=0; i<${#choice}; i++ )); do
-        executeMenuCommands "${choice:$i:1}"
-    done    
+  if [[ $choice != "" ]] ; then
+      for (( i=0; i<${#choice}; i++ )); do
+          executeMenuCommands "${choice:$i:1}"
+      done
+  elif [[ $choice == "" ]] ; then
+      exit 0
+  fi
 }
 
 while true
