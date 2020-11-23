@@ -1,10 +1,12 @@
 # Microservices - Core Service
 
-This is part of Microservice project and contain the `Core` service what provide the following functionality
+This is `Core` service what provide the following functionality
 
-- User Registration
+- Registration
 - Authentication
 - Authorization
+
+## Authentication & Authorizations
 
 ## GraphQL
 - Endpoint: `http://localhost:8080/graphql`
@@ -67,3 +69,5 @@ This is part of Microservice project and contain the `Core` service what provide
 - [Laravel 8 Basic Authentication setup](https://dev.to/kingsconsult/laravel-8-auth-registration-and-login-32jl)
 - [GraphQL with Laravel](https://auth0.com/blog/developing-and-securing-graphql-apis-with-laravel/)
 - [Rebing/Graphql-Laravel](https://github.com/rebing/graphql-laravel#schemas)
+- [JetStream](https://jetstream.laravel.com/1.x/introduction.html)
+- [Fortify](https://github.com/laravel/fortify)
