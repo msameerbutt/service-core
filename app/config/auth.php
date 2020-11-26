@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 return [
 
@@ -40,7 +40,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'token-api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -53,21 +52,10 @@ return [
             'hash' => false,
         ],
 
-        /*
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
-        'admin-api' => [
-            'driver' => 'token',
-            'provider' => 'admins',
-        ],
-        'frontend-api' => [
-            'driver' => 'jwt',
+        'api-passport' => [
+            'driver' => 'passport',
             'provider' => 'users',
-            'hash' => false,
         ],
-        */
     ],
 
     /*
@@ -92,17 +80,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-/*
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Admin::class,
-        ],
-
-        'users_table' => [
-             'driver' => 'database',
-             'table' => 'users',
-        ],
-*/
     ],
 
     /*
@@ -127,13 +104,6 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-/*
-        'admins' => [
-            'provider' => 'admins',
-            'table' => 'password_resets',
-            'expire' => 15,
-        ],
- */
     ],
 
     /*
