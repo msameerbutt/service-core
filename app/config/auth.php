@@ -53,6 +53,11 @@ return [
             'hash' => false,
         ],
 
+        'api-passport' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+
         /*
         'admin' => [
             'driver' => 'session',
