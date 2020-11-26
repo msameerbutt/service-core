@@ -109,6 +109,35 @@ Request:
   GET: http://localhost:8080/auth/jwt/logout
 
   ```
+#### 5. API Authentication VIA Laravel Passport
+### Passport Installation
+Please execute these in the same order for the very first time 
+1. Run `composer require laravel/passport`
+1. Run `php artisan migrate`
+1. Run `php artisan passport:install`
+1. Run `php artisan passport:install --uuids`
+1. Run `php artisan passport:keys`
+1. Run `php artisan vendor:publish --tag=passport-migrations`
+1. Update `\App\Providers\AuthServiceProvider::boot` method and add the following lines
+    ```
+    # Passport related settings
+    Passport::routes();
+    Passport::loadKeysFrom('/secret-keys/oauth');
+    Passport::tokensExpireIn(now()->addDays(15));
+    Passport::refreshTokensExpireIn(now()->addDays(30));
+    Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+    # If you want to use hashed client secrets then enable the following line
+    # Passport::hashClientSecrets();
+    ```
+1. Run `php artisan vendor:publish --tag=passport-views`
+
+ ### Passport Add Client
+ 1. Run `php artisan passport:client`
+ 
+ ### Passport oAuth routes
+ 1. Requesting a Token : `http://localhost:8080/oauth/authorize`
+http://localhost:8080/oauth/authorize?client_id=9219f786-e166-4583-98a5-b09c5f1abb36&redirect_uri=http%3A%2F%2Flocalhost%2Fcallback&response_type=code&scope=&state=asdfadsf
+   
 ## API Gateway
 ### GraphQL
 - Endpoint: `http://localhost:8080/graphql`
