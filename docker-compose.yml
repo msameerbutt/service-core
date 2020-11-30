@@ -24,7 +24,9 @@ services:
       - php
       - mysql
     networks:
-      - service-core
+      service-core:
+        aliases:
+          - core.app.local
       
   # PHP Service
   php:
@@ -115,3 +117,16 @@ services:
     networks:
       - service-core
     entrypoint: ['composer', '--ignore-platform-reqs']
+
+  # The Selenium Server
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: selenium
+#    volumes:
+#      - ./selenium/shm:/dev/shm
+    ports:
+      - 4444:4444
+    networks:
+      service-core:
+        aliases:
+          - selenium.app.local
