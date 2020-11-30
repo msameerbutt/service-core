@@ -45,7 +45,7 @@ abstract class DuskTestCase extends BaseTestCase
         ]);
 
         return RemoteWebDriver::create(
-            $_ENV['SELENIUM_URL'] ?? 'http://localhost:9515',
+            $_ENV['SELENIUM_URL'] ?? 'http://selenium.app.local:4444/wd/hub',
             DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY, $options
             )
